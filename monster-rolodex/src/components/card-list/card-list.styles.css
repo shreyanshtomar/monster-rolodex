@@ -1,7 +1,9 @@
 .card-list{
+    display: flex;
+    flex-wrap: wrap;
     width: 85vw;
     margin: 0 auto;
-    display: grid;
+    justify-content: space-around;
     grid-template-columns: 1fr 1fr 1fr 1fr;
     gap: 20px;
 }

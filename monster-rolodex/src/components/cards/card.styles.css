@@ -6,6 +6,7 @@
     border: 1px solid grey;
     padding: 25px;
     border-radius: 5px;
+    width: 200px;
     cursor: pointer;
     transform: translateZ(0);
     backface-visibility: hidden;
