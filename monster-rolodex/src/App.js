@@ -22,7 +22,7 @@ class App extends Component{
   }
 
   //Arrow functions automatically allow us to set "this" when this(eg. function below) thing is defined.
-  //So we don't have to use binding every time we define a function. //lec-30
+  //So we don't have to use binding every time we define class methods. //lec-30
   handleChange = (e) => {
     this.setState({searchFeild : e.target.value});
   }
@@ -38,7 +38,7 @@ class App extends Component{
 
     return (
       <div className="App">
-
+        <h1>Monster Rolodex</h1>
         <SearchBox 
           placeholder="search monsters"
           handleChange = {this.handleChange}
