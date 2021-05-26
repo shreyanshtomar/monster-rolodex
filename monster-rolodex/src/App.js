@@ -1,14 +1,18 @@
 import React, {Component} from 'react';
 import {CardList} from './components/card-list/card-list.components'
+import { SearchBox } from './components/search-box/search-box.component'
 import './App.css';
 
 class App extends Component{
   constructor(){
     super();
+
     this.state = {
       monsters : [],
       searchFeild: ''
     };
+
+    //this.handleChange = this.handleChange.bind(this);
   }
   
   componentDidMount() {
@@ -17,6 +21,12 @@ class App extends Component{
     .then(users => this.setState({ monsters: users }))
   }
 
+  //Arrow functions automatically allow us to set "this" when this(eg. function below) thing is defined.
+  //So we don't have to use binding every time we define a function. //lec-30
+  handleChange = (e) => {
+    this.setState({searchFeild : e.target.value});
+  }
+  
   //Re-Rendering every time state changes(specifically in search field => dynamic search)
   render(){
     const {monsters, searchFeild} = this.state; // Destructuring the state
@@ -28,12 +38,13 @@ class App extends Component{
 
     return (
       <div className="App">
-        <input 
-          type = "search" 
-          placeholder = "search monsters" 
-          onChange = {e => this.setState({searchFeild : e.target.value})}
+
+        <SearchBox 
+          placeholder="search monsters"
+          handleChange = {this.handleChange}
         />
         <CardList monsters={filteredMonsters}/>
+
       </div>
     ); 
   }
