@@ -6,4 +6,10 @@
     line-height: 30px;
     margin-bottom: 30px;
     outline: none;
+    border-radius: 0.5rem;
+}
+
+.search:focus{
+    box-shadow: 0 0 15px rgb(235, 55, 115);
+    border: 1px solid rgb(132, 21, 160);
 }
