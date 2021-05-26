@@ -6,7 +6,8 @@ class App extends Component{
   constructor(){
     super();
     this.state = {
-      monsters : []
+      monsters : [],
+      searchFeild: ''
     };
   }
   
@@ -16,17 +17,23 @@ class App extends Component{
     .then(users => this.setState({ monsters: users }))
   }
 
+  //Re-Rendering every time state changes(specifically in search field => dynamic search)
   render(){
+    const {monsters, searchFeild} = this.state; // Destructuring the state
+
+    //only include monsters that contains the string in search field
+    //filter method will iterate over all the monsters and check if it constains the string(case insensitive) and inlcudes returns true,
+    // then in the end filter method will return the array of filteredMonsters/
+    const filteredMonsters = monsters.filter(monster => monster.name.toLowerCase().includes(searchFeild.toLowerCase()))
+
     return (
       <div className="App">
-        <CardList name="Shreyansh">
-          <h1> Shreyansh </h1>
-        </CardList>
-        {
-          this.state.monsters.map(monster => 
-            <h1 key={monster.id}>{monster.name}</h1>
-          )
-        }
+        <input 
+          type = "search" 
+          placeholder = "search monsters" 
+          onChange = {e => this.setState({searchFeild : e.target.value})}
+        />
+        <CardList monsters={filteredMonsters}/>
       </div>
     ); 
   }
